@@ -1,13 +1,13 @@
 import {
-  Button,
   ButtonGroup,
+  Card,
   CardActions,
   CardContent,
   CardMedia,
   Grid,
   Typography,
 } from "@mui/material";
-import Card from "@mui/material/Card";
+import { Link } from "react-router-dom";
 
 export default function ProductCard({ product }) {
   let description = product.description.substring(0, 100) + "...";
@@ -47,8 +47,8 @@ export default function ProductCard({ product }) {
         </Typography>
         <CardActions>
           <ButtonGroup variant="outlined" size="small" color="error">
-            <Button>Add to Cart</Button>
-            <Button>Details</Button>
+            <Link to={"/"}>Add to Cart</Link>
+            <Link to={`/product/${product.id}`}>Details</Link>
           </ButtonGroup>
         </CardActions>
       </Card>
