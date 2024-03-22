@@ -14,7 +14,7 @@ function AllProduct() {
     client.get("").then((res) => {
       setProducts(res.data);
     });
-  }, [products]);
+  }, []);
 
   return (
     <>

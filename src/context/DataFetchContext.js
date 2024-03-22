@@ -13,28 +13,27 @@ export const DataProvider = ({children}) => {
         client.get("").then((res) => {
             setAllProducts(res.data);
         });
-      }, [allProducts]);
+      }, []);
 
 
-    const {product, setProduct} = useState([]);
-
-    useEffect(()=>{
-        client.get("/id").then((res) => {
-            setProduct(res.data);
+    const getProduct = (id)=>{
+      
+        client.get(`/${id}`).then( async (res) => { 
+          const product = await res.data;
+          return product;
           });
-
-
-    },[product]);
+    };
 
     return (
-        <DataFetchContext.Provider value={{
-               product,
-            allProducts,
-        }        }
-        >
+      <DataFetchContext.Provider
+        value={{
+          getProduct,
+          allProducts,
+        }}
+      >
         {children}
-        </DataFetchContext.Provider>
-    )
+      </DataFetchContext.Provider>
+    );
 
 }
 
