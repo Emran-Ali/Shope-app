@@ -1,4 +1,5 @@
 import {
+  Button,
   ButtonGroup,
   Card,
   CardActions,
@@ -10,27 +11,34 @@ import {
 import { Link } from "react-router-dom";
 
 export default function ProductCard({ product }) {
-  let description = product.description.substring(0, 100) + "...";
-  let title = product.title.substring(0, 60) + "...";
+  let description =
+    product.description.length > 120
+      ? product.description.substring(0, 120) + "..."
+      : product.description;
+  console.log(product.description.length);
+  let title =
+    product.title.length > 100
+      ? product.title.substring(0, 100) + "..."
+      : product.title;
 
   return (
     <Grid key={product.id} item>
-      <Card sx={{ maxWidth: 300, Height: 450, display: "block" }}>
-        <CardMedia sx={{ height: 150 }} image={product.image} title="" />
+      <Card sx={{ maxWidth: 400, Height: 600, display: "block" }}>
+        <CardMedia sx={{ height: 200 }} image={product.image} title="" />
         <CardContent>
           <Typography
             gutterBottom
             variant="p"
             fontWeight="bold"
             component="div"
-            sx={{ height: 50, display: "block" }}
+            sx={{ height: 80, display: "block" }}
           >
             {title}
           </Typography>
           <Typography
             variant="body2"
             color="text.secondary"
-            sx={{ height: 80, display: "block" }}
+            sx={{ height: 100, display: "block" }}
           >
             {description}
           </Typography>
@@ -41,14 +49,25 @@ export default function ProductCard({ product }) {
             fontWeight: "bold",
             height: 20,
             display: "block",
+            mx: 4,
           }}
+          mx-10
         >
-          Price : {product.price}
+          Price : {product.price} $
         </Typography>
         <CardActions>
-          <ButtonGroup variant="outlined" size="small" color="error">
-            <Link to={"/"}>Add to Cart</Link>
-            <Link to={`/product/${product.id}`}>Details</Link>
+          <ButtonGroup
+            variant="outlined"
+            size="medium"
+            color="error"
+            sx={{ mx: 1 }}
+          >
+            <Link to={"/"}>
+              <Button>Add to Cart</Button>
+            </Link>
+            <Link to={`/product/${product.id}`}>
+              <Button> Details</Button>
+            </Link>
           </ButtonGroup>
         </CardActions>
       </Card>
