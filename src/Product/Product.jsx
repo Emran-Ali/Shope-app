@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import DataFetchContext from "../context/DataFetchContext";
 
 function Product() {
@@ -45,10 +45,18 @@ function Product() {
           <Typography
             gutterBottom
             fontWeight="bold"
-            component="div"
+            component="h2"
             sx={{ display: "block" }}
           >
             {product.title}
+          </Typography>
+          <Typography
+            gutterBottom
+            fontWeight="bold"
+            component="div"
+            sx={{ display: "block" }}
+          >
+            Category: {product.category}
           </Typography>
           <Typography
             variant="body2"
@@ -76,8 +84,12 @@ function Product() {
             color="error"
             sx={{ mx: 1 }}
           >
-            <Button to={"/"}>Add to Cart</Button>
-            <Button to={`/product/${product.id}`}>Details</Button>
+            <Link to={"/cart"}>
+              <Button>Add to Cart</Button>
+            </Link>
+            <Link to={"/"}>
+              <Button>All Product</Button>
+            </Link>
           </ButtonGroup>
         </CardActions>
       </Grid>

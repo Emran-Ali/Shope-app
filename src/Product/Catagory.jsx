@@ -1,7 +1,6 @@
-import { Card, Grid, Typography } from "@mui/material";
+import { Button, Card, CardActions, Grid, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 function Catagory() {
   const client = axios.create({
@@ -21,18 +20,20 @@ function Catagory() {
       {catagories.map((title, index) => {
         return (
           <Grid item alignItems="center" xs={6} lg={3} key={index}>
-            <Link to={"/"}>
-              <Card
-                sx={{
-                  py: 2,
-                  mx: 2,
-                  bgcolor: "#cfe8fc",
-                  "&:hover": { bgcolor: "#68f1ed" },
-                }}
-              >
-                <Typography align="center">{title}</Typography>
-              </Card>
-            </Link>
+            <Card
+              sx={{
+                py: 2,
+                mx: 3,
+                bgcolor: "#cfe8fc",
+                "&:hover": { bgcolor: "#68f1ed" },
+              }}
+            >
+              <CardActions>
+                <Button>
+                  <Typography align="center">{title}</Typography>
+                </Button>
+              </CardActions>
+            </Card>
           </Grid>
         );
       })}
