@@ -10,12 +10,11 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, addToCart }) {
   let description =
     product.description.length > 120
       ? product.description.substring(0, 120) + "..."
       : product.description;
-  console.log(product.description.length);
   let title =
     product.title.length > 100
       ? product.title.substring(0, 100) + "..."
@@ -62,9 +61,8 @@ export default function ProductCard({ product }) {
             color="error"
             sx={{ mx: 1 }}
           >
-            <Link to={"/"}>
-              <Button>Add to Cart</Button>
-            </Link>
+            <Button onClick={() => addToCart(product)}>Add to Cart</Button>
+
             <Link to={`/product/${product.id}`}>
               <Button> Details</Button>
             </Link>
