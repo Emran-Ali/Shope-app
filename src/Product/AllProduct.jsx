@@ -5,10 +5,11 @@ import ProductCard from "../component/shared/ProductCard";
 import Catagory from "./Catagory";
 
 function AllProduct() {
+  const [products, setProducts] = useState([]);
+
   const client = axios.create({
     baseURL: "https://fakestoreapi.com/products",
   });
-  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     client.get("").then((res) => {
