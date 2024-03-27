@@ -1,7 +1,9 @@
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AppBar from "@mui/material/AppBar";
+import Badge from "@mui/material/Badge";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import InputBase from "@mui/material/InputBase";
@@ -96,6 +98,9 @@ export default function MenuAppBar() {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
+          <Badge badgeContent={4} color="error" sx={{ mx: 4 }}>
+            <AddShoppingCartIcon color="action" />
+          </Badge>
           {auth && (
             <div>
               <IconButton
