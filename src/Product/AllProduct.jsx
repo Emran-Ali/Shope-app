@@ -11,14 +11,23 @@ function AllProduct() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    client.get("").then((res) => {
+    async function getAll() {
+      await client.get("").then((res) => {
+        setProducts(res.data);
+      });
+    }
+    getAll();
+  }, []);
+
+  const productByCategories = async (category) => {
+    await client.get(`/category/${category}`).then((res) => {
       setProducts(res.data);
     });
-  }, []);
+  };
 
   return (
     <>
-      <Catagory />
+      <Catagory clickHandler={productByCategories} />
       <Container maxWidth="xl" sx={{ bgcolor: "#cfe8fc", py: 10 }}>
         <Grid item xs={12}>
           <Grid container justifyContent="center" spacing={2}>

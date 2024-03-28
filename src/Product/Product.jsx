@@ -6,6 +6,7 @@ import {
   CardMedia,
   Container,
   Grid,
+  Rating,
   Typography,
 } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
@@ -17,9 +18,12 @@ function Product() {
   const param = useParams();
 
   const [product, setProduct] = useState({});
+  const [rating, setRating] = useState(0);
   useEffect(() => {
     const fn = async () => {
+      console.log("here");
       setProduct(await getProduct(param.id));
+      setRating(product.rating);
     };
     fn();
   }, []);
@@ -45,7 +49,7 @@ function Product() {
           <Typography
             gutterBottom
             fontWeight="bold"
-            component="h2"
+            component="h5"
             sx={{ display: "block" }}
           >
             {product.title}
@@ -53,7 +57,7 @@ function Product() {
           <Typography
             gutterBottom
             fontWeight="bold"
-            component="div"
+            component="h4"
             sx={{ display: "block" }}
           >
             Category: {product.category}
@@ -92,6 +96,14 @@ function Product() {
             </Link>
           </ButtonGroup>
         </CardActions>
+        <Rating
+          name="size-large"
+          value={rating}
+          onChange={(event, newValue) => {
+            setRating(newValue);
+          }}
+          size="large"
+        />
       </Grid>
     </Container>
   );

@@ -2,7 +2,7 @@ import { Button, Card, CardActions, Grid, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-function Catagory() {
+function Catagory({ clickHandler }) {
   const client = axios.create({
     baseURL: "https://fakestoreapi.com/products",
   });
@@ -29,7 +29,7 @@ function Catagory() {
               }}
             >
               <CardActions>
-                <Button>
+                <Button onClick={() => clickHandler(title)}>
                   <Typography align="center">{title}</Typography>
                 </Button>
               </CardActions>
