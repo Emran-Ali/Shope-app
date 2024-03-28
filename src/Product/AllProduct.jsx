@@ -5,10 +5,18 @@ import ProductCard from "../component/shared/ProductCard";
 import Catagory from "./Catagory";
 
 function AllProduct() {
+  const [products, setProducts] = useState([]);
+  const [addedItems, setAddedItem] = useState([]);
+  function addItem(product) {
+    product.addNumber = 1;
+    const itemArr = addedItems;
+    setAddedItem([...itemArr, product]);
+    console.log(addedItems);
+  }
+
   const client = axios.create({
     baseURL: "https://fakestoreapi.com/products",
   });
-  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     async function getAll() {
@@ -32,7 +40,11 @@ function AllProduct() {
         <Grid item xs={12}>
           <Grid container justifyContent="center" spacing={2}>
             {products.map((product) => (
-              <ProductCard product={product} key={product.id} />
+              <ProductCard
+                addToCart={addItem}
+                product={product}
+                key={product.id}
+              />
             ))}
           </Grid>
         </Grid>
