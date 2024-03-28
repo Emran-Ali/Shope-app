@@ -2,11 +2,18 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import { Button } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Badge from "@mui/material/Badge";
 import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import InputBase from "@mui/material/InputBase";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
@@ -14,7 +21,39 @@ import Typography from "@mui/material/Typography";
 import { alpha, styled } from "@mui/material/styles";
 import * as React from "react";
 
-export default function MenuAppBar() {
+export default function MenuAppBar({ items }) {
+  const addNumber = items ? items.length : 1;
+
+  //Drawer
+  const [open, setOpen] = React.useState(false);
+
+  const toggleDrawer = (newOpen) => () => {
+    setOpen(newOpen);
+  };
+
+  const DrawerList = (
+    <Box sx={{ width: 350 }} role="presentation" onClick={toggleDrawer(false)}>
+      <Typography variant="h4" sx={{ color: "blueviolet", p: 2 }}>
+        Your selected
+      </Typography>
+      <Divider />
+      <List>
+        {items.map((text, index) => (
+          <>
+            <ListItem key={text} disablePadding>
+              <ListItemButton sx={{ height: 50 }}>
+                <ListItemText primary={text.title} />
+                <ListItemText primary={text.price} />
+              </ListItemButton>
+            </ListItem>
+
+            <Divider />
+          </>
+        ))}
+      </List>
+    </Box>
+  );
+
   //search
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
@@ -98,9 +137,11 @@ export default function MenuAppBar() {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
-          <Badge badgeContent={4} color="error" sx={{ mx: 4 }}>
-            <AddShoppingCartIcon color="action" />
-          </Badge>
+          <Button onClick={toggleDrawer(true)}>
+            <Badge badgeContent={addNumber} color="error" sx={{ mx: 4 }}>
+              <AddShoppingCartIcon color="action" />
+            </Badge>
+          </Button>
           {auth && (
             <div>
               <IconButton
@@ -135,6 +176,9 @@ export default function MenuAppBar() {
           )}
         </Toolbar>
       </AppBar>
+      <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
+        {DrawerList}
+      </Drawer>
     </Box>
   );
 }

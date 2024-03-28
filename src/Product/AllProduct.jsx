@@ -1,18 +1,14 @@
 import { Container, Grid } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useOutletContext } from "react-router-dom";
 import ProductCard from "../component/shared/ProductCard";
 import Catagory from "./Catagory";
 
 function AllProduct() {
   const [products, setProducts] = useState([]);
-  const [addedItems, setAddedItem] = useState([]);
-  function addItem(product) {
-    product.addNumber = 1;
-    const itemArr = addedItems;
-    setAddedItem([...itemArr, product]);
-    console.log(addedItems);
-  }
+
+  const addItem = useOutletContext();
 
   const client = axios.create({
     baseURL: "https://fakestoreapi.com/products",
