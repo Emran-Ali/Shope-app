@@ -1,30 +1,26 @@
-import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+import { API } from "../lib/api";
 
 const DataFetchContext = createContext();
 
 export const DataProvider = ({ children }) => {
 
-  const client = axios.create({
-    baseURL: "https://fakestoreapi.com/products",
-  });
+  
 
 
   const [allProducts, setAllProducts] = useState([]);
   useEffect(() => {
-    client.get("").then((res) => {
+    API.get("products").then((res) => {
       setAllProducts(res.data);
     });
   }, []);
 
   let a ={}
-  const getProduct =async (id) => {
-    await client.get(`/${id}`).then( (res) => {
+  const getProduct = async (id) => {
+    await API.get(`products/${id}`).then( (res) => {
       a = res.data;
-      
     });
-    return a;
-    
+    return a;   
   };
 
   return (

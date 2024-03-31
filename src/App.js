@@ -1,15 +1,14 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import './App.css';
-import { default as AllProduct } from './Product/AllProduct';
-import Product from './Product/Product';
+import Product from './component//Product';
 import NotFound from './component/NotFound';
+import MainLayout from './component/layouts/MainLayout';
 import { DataProvider } from './context/DataFetchContext';
-import MainLayout from './layouts/MainLayout';
+import AllProduct from './pages/AllProduct';
 
 
-function App() {
-  //fetch single product and view
-  
+function App() {  
+
 
   const router = createBrowserRouter(
     createRoutesFromElements(
