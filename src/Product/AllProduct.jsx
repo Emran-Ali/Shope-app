@@ -32,7 +32,7 @@ function AllProduct() {
   return (
     <>
       <Catagory clickHandler={productByCategories} />
-      <Container maxWidth="xl" sx={{ bgcolor: "#cfe8fc", py: 10 }}>
+      <Container maxWidth="xl" sx={{ bgcolor: "#cfe8fc", py: 2 }}>
         <Grid item xs={12}>
           <Grid container justifyContent="center" spacing={2}>
             {products.map((product) => (

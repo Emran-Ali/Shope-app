@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, Grid, Typography } from "@mui/material";
+import { Button, Card, CardActions, Grid } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -19,19 +19,18 @@ function Catagory({ clickHandler }) {
     <Grid container spacing={2} sx={{ pt: 10, pb: 2 }}>
       {catagories.map((title, index) => {
         return (
-          <Grid item alignItems="center" xs={6} lg={3} key={index}>
+          <Grid item xs={2} lg={3} key={index}>
             <Card
               sx={{
-                py: 2,
-                mx: 3,
+                py: 0,
+                mx: 2,
+
                 bgcolor: "#cfe8fc",
                 "&:hover": { bgcolor: "#68f1ed" },
               }}
             >
-              <CardActions>
-                <Button onClick={() => clickHandler(title)}>
-                  <Typography align="center">{title}</Typography>
-                </Button>
+              <CardActions alignItems="center">
+                <Button onClick={() => clickHandler(title)}> {title}</Button>
               </CardActions>
             </Card>
           </Grid>
