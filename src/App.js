@@ -1,6 +1,6 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import './App.css';
-import Product from './component//Product';
+import Product from './';
 import NotFound from './component/NotFound';
 import MainLayout from './component/layouts/MainLayout';
 import { DataProvider } from './context/DataFetchContext';
