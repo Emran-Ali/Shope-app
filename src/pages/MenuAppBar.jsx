@@ -17,18 +17,22 @@ import { alpha, styled } from "@mui/material/styles";
 import * as React from "react";
 import { Link } from "react-router-dom";
 import SideDrawer from "../component/SideDrawer";
+import ProductContext from "../context/ProductContext";
 
-export default function MenuAppBar({ items, add, del }) {
-  const addNumber = items ? items.length : 1;
-
-  //Drawer
+export default function MenuAppBar({ add, del }) {
+  const [auth, setAuth] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
+
+  const { addedItems } = React.useContext(ProductContext);
+
+  const addNumber = addedItems ? addedItems.length : 0;
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
 
-  const DrawerList = <SideDrawer items={items} add={add} del={del} />;
+  const DrawerList = <SideDrawer />;
 
   //search
   const Search = styled("div")(({ theme }) => ({
@@ -73,8 +77,6 @@ export default function MenuAppBar({ items, add, del }) {
     },
   }));
   //end search
-  const [auth, setAuth] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -110,7 +112,6 @@ export default function MenuAppBar({ items, add, del }) {
                 color: "white",
               }}
             >
-              {" "}
               Shop App
             </Link>
           </Typography>

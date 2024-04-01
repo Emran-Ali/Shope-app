@@ -12,16 +12,18 @@ import {
 } from "@mui/material";
 
 import * as React from "react";
+import ProductContext from "../context/ProductContext";
 import { API } from "../lib/api";
 
-function SideDrawer({ items, add, del }) {
+function SideDrawer() {
+  const { addedItems, addQuantity, removeQuantity } =
+    React.useContext(ProductContext);
   const [open, setOpen] = React.useState(false);
   const [uaseCart, setUserCart] = React.useState(null);
 
   React.useEffect(() => {
     API.get("carts/user/2").then((res) => {
       setUserCart(res.data);
-      console.log(res.data);
       return res.data;
     });
   }, []);
@@ -37,7 +39,7 @@ function SideDrawer({ items, add, del }) {
       </Typography>
       <Divider />
       <List>
-        {items.map((item, index) => (
+        {addedItems?.map((item, index) => (
           <>
             <Card
               display="flex"
@@ -59,7 +61,7 @@ function SideDrawer({ items, add, del }) {
                   <IconButton
                     variant="outlined"
                     color="error"
-                    onClick={() => del(index)}
+                    onClick={() => removeQuantity(index)}
                   >
                     <Remove />
                   </IconButton>
@@ -67,7 +69,7 @@ function SideDrawer({ items, add, del }) {
                   <IconButton
                     variant="outlined"
                     color="primary"
-                    onClick={() => add(index)}
+                    onClick={() => addQuantity(index)}
                   >
                     <Add />
                   </IconButton>

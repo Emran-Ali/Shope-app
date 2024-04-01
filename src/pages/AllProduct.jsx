@@ -30,7 +30,7 @@ function AllProduct() {
       <Container maxWidth="xl" sx={{ bgcolor: "#cfe8fc", py: 2 }}>
         <Grid item xs={12}>
           <Grid container justifyContent="center" spacing={2}>
-            {products.map((product) => (
+            {products?.map((product) => (
               <ProductCard
                 addToCart={addItem}
                 product={product}
