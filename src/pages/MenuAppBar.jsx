@@ -1,5 +1,6 @@
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import LoginIcon from "@mui/icons-material/Login";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import { Button } from "@mui/material";
@@ -17,10 +18,11 @@ import { alpha, styled } from "@mui/material/styles";
 import * as React from "react";
 import { Link } from "react-router-dom";
 import SideDrawer from "../component/SideDrawer";
+import AuthContext from "../context/AuthContext";
 import CartContext from "../context/CartContext";
 
 export default function MenuAppBar() {
-  const [auth, setAuth] = React.useState(true);
+  const { auth, handleLogout } = React.useContext(AuthContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
 
@@ -78,10 +80,6 @@ export default function MenuAppBar() {
   }));
   //end search
 
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
-
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -115,7 +113,7 @@ export default function MenuAppBar() {
               Shop App
             </Link>
           </Typography>
-          <Search>
+          <Search sx={{ mx: 3 }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -124,13 +122,14 @@ export default function MenuAppBar() {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
-          <Button onClick={toggleDrawer(true)}>
-            <Badge badgeContent={addNumber} color="error" sx={{ mx: 4 }}>
-              <AddShoppingCartIcon color="action" />
-            </Badge>
-          </Button>
+
           {auth && (
             <div>
+              <Button onClick={toggleDrawer(true)}>
+                <Badge badgeContent={addNumber} color="error" sx={{ mx: 2 }}>
+                  <AddShoppingCartIcon color="action" />
+                </Badge>
+              </Button>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -156,9 +155,24 @@ export default function MenuAppBar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleLogout}>Log Out</MenuItem>
                 <MenuItem onClick={toggleDrawer(true)}>View Card</MenuItem>
               </Menu>
+            </div>
+          )}
+          {!auth && (
+            <div>
+              <Link to={"/login"}>
+                <IconButton
+                  size="large"
+                  aria-label="Log In"
+                  aria-haspopup="true"
+                  sx={{ color: "#ffffff" }}
+                >
+                  <LoginIcon />
+                  Login
+                </IconButton>
+              </Link>
             </div>
           )}
         </Toolbar>

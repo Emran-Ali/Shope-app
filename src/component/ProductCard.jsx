@@ -9,10 +9,13 @@ import {
   Typography,
 } from "@mui/material";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 import CartContext from "../context/CartContext";
 
 export default function ProductCard({ product }) {
+  const Navigate = useNavigate();
+  const { auth } = useContext(AuthContext);
   const { addToCart } = useContext(CartContext);
   let description =
     product.description.length > 120
@@ -63,7 +66,11 @@ export default function ProductCard({ product }) {
             color="error"
             sx={{ mx: 1 }}
           >
-            <Button onClick={() => addToCart(product)}>Add to Cart</Button>
+            <Button
+              onClick={() => (auth ? addToCart(product) : Navigate("/login"))}
+            >
+              Add to Cart
+            </Button>
             <Link to={`/product/${product.id}`}>
               <Button> Details</Button>
             </Link>
