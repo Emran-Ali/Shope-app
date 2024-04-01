@@ -10,10 +10,10 @@ import {
 } from "@mui/material";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import ProductContext from "../context/ProductContext";
+import CartContext from "../context/CartContext";
 
 export default function ProductCard({ product }) {
-  const { addItem } = useContext(ProductContext);
+  const { addToCart } = useContext(CartContext);
   let description =
     product.description.length > 120
       ? product.description.substring(0, 120) + "..."
@@ -63,7 +63,7 @@ export default function ProductCard({ product }) {
             color="error"
             sx={{ mx: 1 }}
           >
-            <Button onClick={() => addItem(product)}>Add to Cart</Button>
+            <Button onClick={() => addToCart(product)}>Add to Cart</Button>
             <Link to={`/product/${product.id}`}>
               <Button> Details</Button>
             </Link>

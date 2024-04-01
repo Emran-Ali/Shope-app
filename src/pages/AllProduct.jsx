@@ -1,13 +1,11 @@
 import { Container, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useOutletContext } from "react-router-dom";
 import ProductCard from "../component/ProductCard";
 import { API } from "../lib/api";
 import Catagory from "./Catagory";
 
 function AllProduct() {
   const [products, setProducts] = useState([]);
-  const addItem = useOutletContext();
 
   useEffect(() => {
     async function getAll() {
@@ -31,11 +29,7 @@ function AllProduct() {
         <Grid item xs={12}>
           <Grid container justifyContent="center" spacing={2}>
             {products?.map((product) => (
-              <ProductCard
-                addToCart={addItem}
-                product={product}
-                key={product.id}
-              />
+              <ProductCard product={product} key={product.id} />
             ))}
           </Grid>
         </Grid>

@@ -12,11 +12,13 @@ import {
 } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import CartContext from "../context/CartContext";
 import DataFetchContext from "../context/DataFetchContext";
 
 function Product() {
   const [product, setProduct] = useState({});
   const { getProduct } = useContext(DataFetchContext);
+  const { addToCart } = useContext(CartContext);
 
   const param = useParams();
 
@@ -91,7 +93,7 @@ function Product() {
             color="error"
             sx={{ mx: 1 }}
           >
-            <Button>Add to Cart</Button>
+            <Button onClick={() => addToCart(product)}>Add to Cart</Button>
           </ButtonGroup>
         </CardActions>
         <Rating

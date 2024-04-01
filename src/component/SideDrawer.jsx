@@ -12,12 +12,12 @@ import {
 } from "@mui/material";
 
 import * as React from "react";
-import ProductContext from "../context/ProductContext";
+import CartContext from "../context/CartContext";
 import { API } from "../lib/api";
 
 function SideDrawer() {
-  const { addedItems, addQuantity, removeQuantity } =
-    React.useContext(ProductContext);
+  const { cartItems, addQuantity, removeQuantity } =
+    React.useContext(CartContext);
   const [open, setOpen] = React.useState(false);
   const [uaseCart, setUserCart] = React.useState(null);
 
@@ -39,7 +39,7 @@ function SideDrawer() {
       </Typography>
       <Divider />
       <List>
-        {addedItems?.map((item, index) => (
+        {cartItems?.map((item, index) => (
           <Card
             display="flex"
             sx={{ m: 1, p: 1, bgcolor: "#cfe8fc" }}

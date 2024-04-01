@@ -3,8 +3,8 @@ import './App.css';
 import NotFound from './component/NotFound';
 import Product from './component/Product';
 import MainLayout from './component/layouts/MainLayout';
+import { ProductContextProvider } from './context/CartContext';
 import { DataProvider } from './context/DataFetchContext';
-import { ProductContextProvider } from './context/ProductContext';
 import AllProduct from './pages/AllProduct';
 
 
