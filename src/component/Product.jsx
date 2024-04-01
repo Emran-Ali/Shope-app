@@ -33,7 +33,7 @@ function Product() {
     <Container maxWidth="xl" sx={{ bgcolor: "#cfe8fc", p: 10 }}>
       <Link to={"/"}>
         <Button>
-          <ArrowCircleLeftIcon />
+          <ArrowCircleLeftIcon /> Back
         </Button>
       </Link>
       <Grid
@@ -96,11 +96,16 @@ function Product() {
             <Button onClick={() => addToCart(product)}>Add to Cart</Button>
           </ButtonGroup>
         </CardActions>
+
         <Rating
           name="size-large"
           value={Number(product?.rating?.rate)}
           size="large"
+          readOnly
         />
+        <Typography variant="h2">
+          Review Count: {product?.rating?.count}
+        </Typography>
       </Grid>
     </Container>
   );

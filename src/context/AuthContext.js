@@ -4,8 +4,12 @@ const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
     // const navigate = useNavigate();
+    const storageAuth = localStorage.getItem('auth');
     
-  const [auth, setAuth] = useState(true);
+  const [auth, setAuth] = useState(storageAuth);
+  
+//   setAuth(JSON.parse(storageAuth));
+
 
 //   return <Navigate to="/dashboard" />;
 
@@ -27,6 +31,7 @@ export const AuthContextProvider = ({ children }) => {
     function add() {
       localStorage.setItem(key, JSON.stringify(userData));
       alert("success");
+      localStorage.setItem('auth', true);
       setAuth(true);
       window.location.href ="/" ;
     // return navigate('./');
@@ -47,6 +52,7 @@ export const AuthContextProvider = ({ children }) => {
     getData && (getData.password === LoginData.password) ? add() : alert('Invalid Creadential');
     function add(){
         alert('Succefully Login');
+        localStorage.setItem('auth', true);
         setAuth(true);
         window.location.href ="/" ;
         // return navigate('./');
