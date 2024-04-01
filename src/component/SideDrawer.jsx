@@ -40,51 +40,49 @@ function SideDrawer() {
       <Divider />
       <List>
         {addedItems?.map((item, index) => (
-          <>
-            <Card
-              display="flex"
-              justifyContent="space-betwwen"
-              sx={{ m: 1, p: 1, bgcolor: "#cfe8fc" }}
-              spacing={2}
-            >
-              <Stack direction="row" spacing={4} sx={{ mb: 2 }}>
-                <Typography variant="div" sx={{ font: "bold" }}>
-                  {item.title}
-                </Typography>
-                <Typography variant="div" sx={{ font: "bold" }}>
-                  Price: {item.price} $
-                </Typography>
-              </Stack>
-              <Stack direction="row" spacing={4} sx={{ fontWeight: "bold" }}>
-                <Typography variant="div" sx={{ font: "bold" }}>
-                  Quantity :
-                  <IconButton
-                    variant="outlined"
-                    color="error"
-                    onClick={() => removeQuantity(index)}
-                  >
-                    <Remove />
-                  </IconButton>
-                  <Chip color="primary" label={item.quantity} size="small" />
-                  <IconButton
-                    variant="outlined"
-                    color="primary"
-                    onClick={() => addQuantity(index)}
-                  >
-                    <Add />
-                  </IconButton>
-                </Typography>
-                <Typography variant="div" sx={{ font: "bold" }}>
-                  Total :
-                  <Chip
-                    color="primary"
-                    label={item.price * item.quantity}
-                    size="small"
-                  />
-                </Typography>
-              </Stack>
-            </Card>
-          </>
+          <Card
+            display="flex"
+            sx={{ m: 1, p: 1, bgcolor: "#cfe8fc" }}
+            spacing={2}
+            key={item.id}
+          >
+            <Stack direction="row" spacing={4} sx={{ mb: 2 }}>
+              <Typography variant="div" sx={{ font: "bold" }}>
+                {item.title}
+              </Typography>
+              <Typography variant="div" sx={{ font: "bold" }}>
+                Price: {item.price} $
+              </Typography>
+            </Stack>
+            <Stack direction="row" spacing={4} sx={{ fontWeight: "bold" }}>
+              <Typography variant="div" sx={{ font: "bold" }}>
+                Quantity :
+                <IconButton
+                  variant="outlined"
+                  color="error"
+                  onClick={() => removeQuantity(index)}
+                >
+                  <Remove />
+                </IconButton>
+                <Chip color="primary" label={item.quantity} size="small" />
+                <IconButton
+                  variant="outlined"
+                  color="primary"
+                  onClick={() => addQuantity(index)}
+                >
+                  <Add />
+                </IconButton>
+              </Typography>
+              <Typography variant="div" sx={{ font: "bold" }}>
+                Total :
+                <Chip
+                  color="primary"
+                  label={item.price * item.quantity}
+                  size="small"
+                />
+              </Typography>
+            </Stack>
+          </Card>
         ))}
       </List>
       <Button

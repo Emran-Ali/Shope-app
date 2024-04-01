@@ -5,9 +5,6 @@ const DataFetchContext = createContext();
 
 export const DataProvider = ({ children }) => {
 
-  
-
-
   const [allProducts, setAllProducts] = useState([]);
   useEffect(() => {
     API.get("products").then((res) => {

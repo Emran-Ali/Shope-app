@@ -81,7 +81,6 @@ function Product() {
             display: "block",
             mx: 4,
           }}
-          mx-10
         >
           Price : {product.price} $
         </Typography>

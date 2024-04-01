@@ -19,7 +19,7 @@ import { Link } from "react-router-dom";
 import SideDrawer from "../component/SideDrawer";
 import ProductContext from "../context/ProductContext";
 
-export default function MenuAppBar({ add, del }) {
+export default function MenuAppBar() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
