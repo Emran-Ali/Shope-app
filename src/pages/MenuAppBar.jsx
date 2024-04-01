@@ -3,7 +3,7 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import LoginIcon from "@mui/icons-material/Login";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import { Button } from "@mui/material";
+import { Button, Paper } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Badge from "@mui/material/Badge";
 import Box from "@mui/material/Box";
@@ -20,9 +20,11 @@ import { Link } from "react-router-dom";
 import SideDrawer from "../component/SideDrawer";
 import AuthContext from "../context/AuthContext";
 import CartContext from "../context/CartContext";
+import DataFetchContext from "../context/DataFetchContext";
 
 export default function MenuAppBar() {
   const { auth, handleLogout } = React.useContext(AuthContext);
+  const { handleSearch } = React.useContext(DataFetchContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
 
@@ -113,15 +115,46 @@ export default function MenuAppBar() {
               Shop App
             </Link>
           </Typography>
-          <Search sx={{ mx: 3 }}>
+          {/* <Search sx={{ mx: 3 }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
+              type="submit"
+              onSubmit={(e) => {
+                handleSearch(e.target.value);
+              }}
             />
-          </Search>
+          </Search> */}
+          <Paper
+            component="form"
+            sx={{
+              p: "2px 4px",
+              display: "flex",
+              alignItems: "center",
+              width: 400,
+            }}
+          >
+            <InputBase
+              sx={{ ml: 1, flex: 1 }}
+              placeholder="Search Product"
+              inputProps={{ "aria-label": "search " }}
+              name="search"
+            />
+            <IconButton
+              type="submit"
+              onSubmit={(e) => {
+                e.preventDefault();
+                console.log("searce");
+              }}
+              sx={{ p: "10px" }}
+              aria-label="search"
+            >
+              <SearchIcon />
+            </IconButton>
+          </Paper>
 
           {auth && (
             <div>
@@ -167,10 +200,9 @@ export default function MenuAppBar() {
                   size="large"
                   aria-label="Log In"
                   aria-haspopup="true"
-                  sx={{ color: "#ffffff" }}
+                  sx={{ color: "#ffffff", ":hover": { bgcolor: "#D6589F" } }}
                 >
                   <LoginIcon />
-                  Login
                 </IconButton>
               </Link>
             </div>

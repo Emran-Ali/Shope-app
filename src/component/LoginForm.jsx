@@ -32,9 +32,15 @@ function Copyright(props) {
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
-const defaultTheme = createTheme();
+const defaultTheme = createTheme({
+  palette: {
+    background: {
+      default: "#cfe8fc",
+    },
+  },
+});
 
-export default function SignUp() {
+export default function SignIn() {
   const { handleLogin } = React.useContext(AuthContext);
 
   return (
@@ -53,7 +59,7 @@ export default function SignUp() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Log In
+            Sign In
           </Typography>
           <Box component="form" onSubmit={handleLogin} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
@@ -85,7 +91,7 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Sign In
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>

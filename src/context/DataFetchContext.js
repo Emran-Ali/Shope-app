@@ -7,9 +7,12 @@ export const DataProvider = ({ children }) => {
 
   const [allProducts, setAllProducts] = useState([]);
   useEffect(() => {
-    API.get("products").then((res) => {
-      setAllProducts(res.data);
-    });
+    async function getAll() {
+      await API.get("products").then((res) => {
+        setAllProducts(res.data);
+      });
+    }
+    getAll();
   }, []);
 
   let a ={}
@@ -19,12 +22,37 @@ export const DataProvider = ({ children }) => {
     });
     return a;   
   };
+  // const [products, setProducts] = useState([]);
+
+  // useEffect(() => {
+  //   async function getAll() {
+  //     await API.get("products").then((res) => {
+  //       setProducts(res.data);
+  //     });
+  //   }
+  //   getAll();
+  // }, []);
+
+  const productByCategories = async (category) => {
+    await API.get(`products/category/${category}`).then((res) => {
+      setAllProducts(res.data);
+    });
+  };
+
+   const handleSearch = (value) => {
+     const itmesFilter = allProducts.filter((item) =>
+       item.title.toLowerCase().includes(value.toLowerCase())
+     );
+     setAllProducts(itmesFilter);
+   };
 
   return (
     <DataFetchContext.Provider
       value={{
         getProduct,
         allProducts,
+        productByCategories,
+        handleSearch,
       }}
     >
       {children}

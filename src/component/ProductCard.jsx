@@ -28,7 +28,14 @@ export default function ProductCard({ product }) {
 
   return (
     <Grid key={product.id} item>
-      <Card sx={{ maxWidth: 400, Height: 600, display: "block" }}>
+      <Card
+        sx={{
+          maxWidth: 400,
+          Height: 600,
+          display: "block",
+          bgcolor: "#93B1A6",
+        }}
+      >
         <CardMedia sx={{ height: 200 }} image={product.image} title="" />
         <CardContent>
           <Typography

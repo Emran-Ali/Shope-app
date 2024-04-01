@@ -34,7 +34,13 @@ function Copyright(props) {
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
-const defaultTheme = createTheme();
+const defaultTheme = createTheme({
+  palette: {
+    background: {
+      default: "#cfe8fc",
+    },
+  },
+});
 
 export default function SignUp() {
   const { handleSinup } = React.useContext(AuthContext);

@@ -103,7 +103,7 @@ function Product() {
           size="large"
           readOnly
         />
-        <Typography variant="h2">
+        <Typography variant="h5">
           Review Count: {product?.rating?.count}
         </Typography>
       </Grid>

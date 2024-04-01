@@ -20,14 +20,14 @@ function Catagory({ clickHandler }) {
               onClick={() => clickHandler(title)}
               sx={{
                 width: "90%",
-                p: 2,
+                p: 1,
                 mx: 2,
 
                 bgcolor: "#cfe8fc",
                 "&:hover": { bgcolor: "#68f1ed" },
+                fontWeight: "bold",
               }}
             >
-              {" "}
               {title}
             </Button>
           </Grid>

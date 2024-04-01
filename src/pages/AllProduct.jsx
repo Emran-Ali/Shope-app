@@ -1,26 +1,11 @@
 import { Container, Grid } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import ProductCard from "../component/ProductCard";
-import { API } from "../lib/api";
+import DataFetchContext from "../context/DataFetchContext";
 import Catagory from "./Catagory";
 
 function AllProduct() {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    async function getAll() {
-      await API.get("products").then((res) => {
-        setProducts(res.data);
-      });
-    }
-    getAll();
-  }, []);
-
-  const productByCategories = async (category) => {
-    await API.get(`products/category/${category}`).then((res) => {
-      setProducts(res.data);
-    });
-  };
+  const { allProducts, productByCategories } = useContext(DataFetchContext);
 
   return (
     <>
@@ -28,7 +13,7 @@ function AllProduct() {
       <Container maxWidth="xl" sx={{ bgcolor: "#cfe8fc", py: 2 }}>
         <Grid item xs={12}>
           <Grid container justifyContent="center" spacing={2}>
-            {products?.map((product) => (
+            {allProducts?.map((product) => (
               <ProductCard product={product} key={product.id} />
             ))}
           </Grid>

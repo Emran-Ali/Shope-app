@@ -48,7 +48,6 @@ export const AuthContextProvider = ({ children }) => {
       password: data.get("password"),
     };
     const getData = JSON.parse(localStorage.getItem(key));
-    console.log(getData.password);
     getData && (getData.password === LoginData.password) ? add() : alert('Invalid Creadential');
     function add(){
         alert('Succefully Login');
