@@ -4,6 +4,7 @@ import { API } from "../lib/api";
 const DataFetchContext = createContext();
 
 export const DataProvider = ({ children }) => {
+  const [searce, setSearce] = useState("");
 
   const [allProducts, setAllProducts] = useState([]);
   useEffect(() => {
@@ -39,11 +40,14 @@ export const DataProvider = ({ children }) => {
     });
   };
 
-   const handleSearch = (value) => {
+   const handleSearch = (e) => {
+    console.log(e.target.value)
+    setSearce(e.target.value)
      const itmesFilter = allProducts.filter((item) =>
-       item.title.toLowerCase().includes(value.toLowerCase())
+       item.title.toLowerCase().includes(e.target.value.toLowerCase())
      );
      setAllProducts(itmesFilter);
+     
    };
 
   return (
@@ -53,6 +57,7 @@ export const DataProvider = ({ children }) => {
         allProducts,
         productByCategories,
         handleSearch,
+        searce
       }}
     >
       {children}

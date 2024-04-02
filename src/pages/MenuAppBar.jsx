@@ -2,21 +2,19 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import LoginIcon from "@mui/icons-material/Login";
 import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
-import { Button, Paper } from "@mui/material";
+import { Button } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Badge from "@mui/material/Badge";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import InputBase from "@mui/material/InputBase";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { alpha, styled } from "@mui/material/styles";
 import * as React from "react";
 import { Link } from "react-router-dom";
+import SearchBar from "../component/SearchBar";
 import SideDrawer from "../component/SideDrawer";
 import AuthContext from "../context/AuthContext";
 import CartContext from "../context/CartContext";
@@ -27,6 +25,7 @@ export default function MenuAppBar() {
   const { handleSearch } = React.useContext(DataFetchContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
+  const [searce, setSearce] = React.useState("");
 
   const { cartItems } = React.useContext(CartContext);
 
@@ -38,56 +37,17 @@ export default function MenuAppBar() {
 
   const DrawerList = <SideDrawer />;
 
-  //search
-  const Search = styled("div")(({ theme }) => ({
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(1),
-      width: "auto",
-    },
-  }));
-
-  const SearchIconWrapper = styled("div")(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }));
-
-  const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "inherit",
-    width: "100%",
-    "& .MuiInputBase-input": {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create("width"),
-      [theme.breakpoints.up("sm")]: {
-        width: "12ch",
-        "&:focus": {
-          width: "20ch",
-        },
-      },
-    },
-  }));
-  //end search
-
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleChange = (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+    setSearce(e.target.value);
   };
 
   return (
@@ -115,20 +75,10 @@ export default function MenuAppBar() {
               Shop App
             </Link>
           </Typography>
-          {/* <Search sx={{ mx: 3 }}>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-              type="submit"
-              onSubmit={(e) => {
-                handleSearch(e.target.value);
-              }}
-            />
-          </Search> */}
-          <Paper
+
+          <SearchBar />
+
+          {/* <Paper
             component="form"
             sx={{
               p: "2px 4px",
@@ -154,7 +104,7 @@ export default function MenuAppBar() {
             >
               <SearchIcon />
             </IconButton>
-          </Paper>
+          </Paper> */}
 
           {auth && (
             <div>
