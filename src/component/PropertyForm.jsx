@@ -50,7 +50,7 @@ const MultiStepForm = () => {
         <Stepper activeStep={step} alternativeLabel>
           {steps.map((item, index) => (
             <Step key={index}>
-              <StepLabel>{item.label}</StepLabel>
+              <StepLabel></StepLabel>
             </Step>
           ))}
         </Stepper>
