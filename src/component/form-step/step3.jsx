@@ -1,6 +1,6 @@
-import { Button, Box } from "@mui/material";
-import useFormStep from "../hooks/useFormStep";
-import FormField from "./FormField";
+import { Box, Button } from "@mui/material";
+import FormField from "../FormField";
+import useFormStep from "../../lib/useFormStep";
 
 // eslint-disable-next-line react/prop-types
 const Step3 = ({ handleBack }) => {
