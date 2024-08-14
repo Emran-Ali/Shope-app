@@ -1,6 +1,8 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple react app for learnig perpus.
+In this app [faceshope](https://fakestoreapi.com) api used for data.
+And local storage used for store user info so that i can create user and log in.
 
 ## Available Scripts
 

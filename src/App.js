@@ -8,6 +8,7 @@ import "./App.css";
 import LoginForm from "./component/LoginForm";
 import NotFound from "./component/NotFound";
 import Product from "./component/Product";
+import PropertyForm from "./component/PropertyForm";
 import RegisterForm from "./component/RegisterForm";
 import MainLayout from "./component/layouts/MainLayout";
 import { AuthContextProvider } from "./context/AuthContext";
@@ -23,6 +24,7 @@ function App() {
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/product/:id" element={<Product />} />
+        <Route path="/form" element={<PropertyForm />} />
 
         <Route path="/*" element={<NotFound />} />
       </Route>
