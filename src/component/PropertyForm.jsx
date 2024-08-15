@@ -16,7 +16,7 @@ import Step3 from "./form-step/Step3";
 
 import { validationSchema } from "../lib/validationSchema";
 
-const MultiStepForm = () => {
+const PropertyForm = () => {
   const [step, setStep] = useState(0);
 
   const handleNext = () => {
@@ -42,8 +42,8 @@ const MultiStepForm = () => {
   ];
 
   return (
-    <Container component="main" maxWidth="sm">
-      <Paper elevation={3} sx={{ padding: 4, marginTop: 4 }}>
+    <Container component="main" maxWidth="xl">
+      <Paper elevation={3} sx={{ padding: 4, marginTop: 10 }}>
         <Typography component="h1" variant="h5" align="center" gutterBottom>
           Multi-Step Form
         </Typography>
@@ -79,4 +79,4 @@ const MultiStepForm = () => {
   );
 };
 
-export default MultiStepForm;
+export default PropertyForm;
