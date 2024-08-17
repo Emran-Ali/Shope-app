@@ -1,4 +1,4 @@
-import { Box, Button, Grid } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import useFormStep from "../../lib/useFormStep";
 import Input from "./Input";
 import InputSelect from "./InputSelect";
@@ -13,6 +13,10 @@ const Step1 = ({ handleNext }) => {
     { value: "3", label: "Khulna" },
     // Add other divisions here
   ];
+  const isDistrict = [
+    { value: "1", label: "District" },
+    { value: "2", label: "City Corporation" },
+  ];
   const type = [
     { value: "1", label: "House" },
     { value: "2", label: "Flate" },
@@ -21,7 +25,23 @@ const Step1 = ({ handleNext }) => {
 
   return (
     // <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-    <Grid container spacing={1}>
+    <Grid container spacing={2}>
+      <Grid item xs={12}>
+        <Typography
+          variant="h3"
+          component="h3"
+          sx={{ fontSize: "22px", fontWeight: 600, color: "#282828" }}
+        >
+          Add your new properties
+        </Typography>
+        <Typography
+          variant="h3"
+          component="h3"
+          sx={{ fontSize: "16px", fontWeight: 400, color: "#6F6F6F" }}
+        >
+          Fill up these information given below for adding your property{" "}
+        </Typography>
+      </Grid>
       <Grid item xs={12}>
         <InputSelect
           title={"Select category"}
@@ -46,10 +66,10 @@ const Step1 = ({ handleNext }) => {
       </Grid>
       <Grid item xs={12} md={6}>
         <RadioInput
-          title={"Division"}
-          name={"isdistrict"}
+          title={"District/City Corporation"}
+          name={"isDistrict"}
           selected={1}
-          options={divisions}
+          options={isDistrict}
         />
       </Grid>
       <Grid item xs={12} md={6}>
@@ -61,11 +81,11 @@ const Step1 = ({ handleNext }) => {
         />
       </Grid>
       <Grid item xs={12} md={6}>
-        <InputSelect
-          title={"District"}
-          name={"district"}
+        <RadioInput
+          title={"Upozila/Muunicipals"}
+          name={"isUpozila"}
           selected={1}
-          options={divisions}
+          options={isDistrict}
         />
       </Grid>
       <Grid item xs={12} md={6}>
