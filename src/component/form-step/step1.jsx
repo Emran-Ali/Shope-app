@@ -2,6 +2,7 @@ import { Box, Button, Grid } from "@mui/material";
 import useFormStep from "../../lib/useFormStep";
 import Input from "./Input";
 import InputSelect from "./InputSelect";
+import RadioInput from "./RadioInput";
 
 // eslint-disable-next-line react/prop-types
 const Step1 = ({ handleNext }) => {
@@ -34,6 +35,22 @@ const Step1 = ({ handleNext }) => {
       </Grid>
       <Grid item xs={12} md={6}>
         <Input name="firstName" title="Last Name" placeholder="Last Name" />
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <InputSelect
+          title={"Division"}
+          name={"district"}
+          selected={1}
+          options={divisions}
+        />
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <RadioInput
+          title={"Division"}
+          name={"isdistrict"}
+          selected={1}
+          options={divisions}
+        />
       </Grid>
       <Grid item xs={12} md={6}>
         <InputSelect
