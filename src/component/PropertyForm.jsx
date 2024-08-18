@@ -6,10 +6,9 @@ import { Form, Formik } from "formik";
 import { useState } from "react";
 
 import Check from "@mui/icons-material/Check";
-import SettingsIcon from "@mui/icons-material/Settings";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
+import SettingsIcon from "@mui/icons-material/Settings";
 import VideoLabelIcon from "@mui/icons-material/VideoLabel";
-import { StepIconProps } from "@mui/material/StepIcon";
 
 import {
   Container,
