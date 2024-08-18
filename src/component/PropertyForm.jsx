@@ -6,9 +6,9 @@ import { Form, Formik } from "formik";
 import { useState } from "react";
 
 import Check from "@mui/icons-material/Check";
-import GroupAddIcon from "@mui/icons-material/GroupAdd";
-import SettingsIcon from "@mui/icons-material/Settings";
-import VideoLabelIcon from "@mui/icons-material/VideoLabel";
+import HomeIcon from "@mui/icons-material/Home";
+import PinDropIcon from "@mui/icons-material/PinDrop";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 
 import {
   Container,
@@ -73,9 +73,9 @@ function ColorlibStepIcon(props) {
   const { active, completed, className } = props;
 
   const icons = {
-    1: <SettingsIcon />,
-    2: <GroupAddIcon />,
-    3: <VideoLabelIcon />,
+    1: <PinDropIcon />,
+    2: <HomeIcon />,
+    3: <RemoveRedEyeIcon />,
   };
 
   return (
@@ -91,7 +91,9 @@ function ColorlibStepIcon(props) {
 const PropertyForm = () => {
   const [step, setStep] = useState(0);
 
-  const handleNext = () => {
+  const handleNext = (values) => {
+    console.log(values);
+
     setStep((prev) => prev + 1);
   };
 
@@ -116,9 +118,6 @@ const PropertyForm = () => {
   return (
     <Container component="main" maxWidth="xl">
       <Paper elevation={3} sx={{ padding: 4, marginTop: 10 }}>
-        <Typography component="h1" variant="h5" align="center" gutterBottom>
-          Multi-Step Form
-        </Typography>
         <Stepper
           activeStep={step}
           alternativeLabel
@@ -133,11 +132,21 @@ const PropertyForm = () => {
         <br />
         <Formik
           initialValues={{
-            firstName: "",
-            lastName: "",
-            email: "",
-            phone: "",
-            address: "",
+            catagory: "",
+            division: "",
+            district: "",
+            isDistrict: "",
+            isUpozila: "",
+            upazila: "",
+            union: "",
+            village: "",
+            houseName: "",
+            houseNumber: "",
+            avgFlat: "",
+            numberOfFlore: "",
+            lift: "",
+            parking: "",
+            sequrity: "",
           }}
           validationSchema={validationSchema[step]}
           onSubmit={(values) => {

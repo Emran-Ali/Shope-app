@@ -1,8 +1,7 @@
-import { Box, Grid, Button, Typography } from "@mui/material";
-import FormField from "../FormField";
+import { Button, Grid, Typography } from "@mui/material";
+import useFormStep from "../../lib/useFormStep";
 import Input from "./Input";
 import RadioInput from "./RadioInput";
-import useFormStep from "../../lib/useFormStep";
 
 // eslint-disable-next-line react/prop-types
 const Step2 = ({ handleNext, handleBack }) => {

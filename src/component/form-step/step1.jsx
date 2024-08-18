@@ -51,15 +51,9 @@ const Step1 = ({ handleNext }) => {
         />
       </Grid>
       <Grid item xs={12} md={6}>
-        <Input title={"House Name"} name="lastName" placeholder="First Name" />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <Input name="firstName" title="Last Name" placeholder="Last Name" />
-      </Grid>
-      <Grid item xs={12} md={6}>
         <InputSelect
           title={"Division"}
-          name={"district"}
+          name={"division"}
           selected={1}
           options={divisions}
         />
