@@ -1,5 +1,15 @@
+import StepConnector, {
+  stepConnectorClasses,
+} from "@mui/material/StepConnector";
+import { styled } from "@mui/material/styles";
 import { Form, Formik } from "formik";
 import { useState } from "react";
+
+import Check from "@mui/icons-material/Check";
+import SettingsIcon from "@mui/icons-material/Settings";
+import GroupAddIcon from "@mui/icons-material/GroupAdd";
+import VideoLabelIcon from "@mui/icons-material/VideoLabel";
+import { StepIconProps } from "@mui/material/StepIcon";
 
 import {
   Container,
@@ -15,6 +25,69 @@ import Step2 from "./form-step/Step2";
 import Step3 from "./form-step/Step3";
 
 import { validationSchema } from "../lib/validationSchema";
+
+const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
+  [`&.${stepConnectorClasses.alternativeLabel}`]: {
+    top: 22,
+  },
+  [`&.${stepConnectorClasses.active}`]: {
+    [`& .${stepConnectorClasses.line}`]: {
+      backgroundColor: "#1E2772",
+    },
+  },
+  [`&.${stepConnectorClasses.completed}`]: {
+    [`& .${stepConnectorClasses.line}`]: {
+      backgroundColor: "#1E2772",
+    },
+  },
+  [`& .${stepConnectorClasses.line}`]: {
+    height: 3,
+    border: 0,
+    backgroundColor:
+      theme.palette.mode === "dark" ? theme.palette.grey[800] : "#eaeaf0",
+    borderRadius: 1,
+  },
+}));
+const ColorlibStepIconRoot = styled("div")(({ theme, ownerState }) => ({
+  backgroundColor:
+    theme.palette.mode === "dark" ? theme.palette.grey[700] : "#ccc",
+  zIndex: 1,
+  color: "#1E2772",
+  width: 50,
+  height: 50,
+  display: "flex",
+  borderRadius: "50%",
+  justifyContent: "center",
+  alignItems: "center",
+  ...(ownerState.active && {
+    backgroundColor: "#1E2772",
+    color: "#fff",
+    boxShadow: "0 4px 10px 0 rgba(0,0,0,.25)",
+  }),
+  ...(ownerState.completed && {
+    backgroundColor: "#1E2772",
+    color: "#fff",
+  }),
+}));
+
+function ColorlibStepIcon(props) {
+  const { active, completed, className } = props;
+
+  const icons = {
+    1: <SettingsIcon />,
+    2: <GroupAddIcon />,
+    3: <VideoLabelIcon />,
+  };
+
+  return (
+    <ColorlibStepIconRoot
+      ownerState={{ completed, active }}
+      className={className}
+    >
+      {completed ? <Check /> : icons[String(props.icon)]}
+    </ColorlibStepIconRoot>
+  );
+}
 
 const PropertyForm = () => {
   const [step, setStep] = useState(0);
@@ -47,10 +120,14 @@ const PropertyForm = () => {
         <Typography component="h1" variant="h5" align="center" gutterBottom>
           Multi-Step Form
         </Typography>
-        <Stepper activeStep={step} alternativeLabel>
+        <Stepper
+          activeStep={step}
+          alternativeLabel
+          connector={<ColorlibConnector />}
+        >
           {steps.map((item, index) => (
             <Step key={index}>
-              <StepLabel></StepLabel>
+              <StepLabel StepIconComponent={ColorlibStepIcon}></StepLabel>
             </Step>
           ))}
         </Stepper>
