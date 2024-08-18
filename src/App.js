@@ -10,6 +10,7 @@ import NotFound from "./component/NotFound";
 import Product from "./component/Product";
 import PropertyForm from "./component/PropertyForm";
 import RegisterForm from "./component/RegisterForm";
+import Completed from "./component/form-step/Completed";
 import MainLayout from "./component/layouts/MainLayout";
 import { AuthContextProvider } from "./context/AuthContext";
 import { ProductContextProvider } from "./context/CartContext";
@@ -25,6 +26,7 @@ function App() {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/form" element={<PropertyForm />} />
+        <Route path="/complete" element={<Completed />} />
 
         <Route path="/*" element={<NotFound />} />
       </Route>
